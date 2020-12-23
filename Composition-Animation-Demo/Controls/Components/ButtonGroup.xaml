@@ -1,0 +1,46 @@
+﻿<UserControl
+    x:Class="CompositionAnimationDemo.Controls.Components.ButtonGroup"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:CompositionAnimationDemo.Controls.Components"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="using:CompositionAnimationDemo.Models"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    d:DesignHeight="300"
+    d:DesignWidth="400"
+    Loaded="UserControl_Loaded"
+    mc:Ignorable="d">
+
+    <Grid>
+
+        <Border
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Stretch"
+            Background="{StaticResource DarkBackground}"
+            CornerRadius="4" />
+        <Border x:Name="ThumbHost" CornerRadius="4"/>
+        <muxc:ItemsRepeater
+            x:Name="ItemsRepeater"
+            ElementClearing="ItemsRepeater_ElementClearing"
+            ElementIndexChanged="ItemsRepeater_ElementIndexChanged"
+            ElementPrepared="ItemsRepeater_ElementPrepared"
+            ItemsSource="{x:Bind ItemsSource, Mode=OneWay}">
+            <muxc:ItemsRepeater.Layout>
+                <muxc:StackLayout Orientation="{x:Bind Orientation, Mode=OneWay}" />
+            </muxc:ItemsRepeater.Layout>
+            <muxc:ItemsRepeater.ItemTemplate>
+                <DataTemplate x:DataType="models:ButtonGroupItemBase">
+                    <Button
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        HorizontalContentAlignment="Stretch"
+                        VerticalContentAlignment="Stretch"
+                        Background="Transparent"
+                        Content="{x:Bind DisplayText}"
+                        Tag="{x:Bind}" />
+                </DataTemplate>
+            </muxc:ItemsRepeater.ItemTemplate>
+        </muxc:ItemsRepeater>
+    </Grid>
+</UserControl>

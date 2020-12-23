@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CompositionAnimationDemo.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -37,6 +38,11 @@ namespace CompositionAnimationDemo.Views
                 LoadingRing.IsActive = false;
             }
             base.OnNavigatedTo(e);
+        }
+
+        private void ButtonGroup_ItemClick(object sender, Models.IButtonGroupItem e)
+        {
+
         }
     }
 }

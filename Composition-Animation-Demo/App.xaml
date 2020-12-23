@@ -9,6 +9,10 @@
                 <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
             </ResourceDictionary.MergedDictionaries>
 
+            <SolidColorBrush x:Key="PageBackground" Color="#1D2229" />
+            <SolidColorBrush x:Key="CardBackground" Color="#293039" />
+            <SolidColorBrush x:Key="DarkBackground" Color="#12151A" />
+
             <Style x:Key="BasicGridViewItemContainerStyle" TargetType="GridViewItem">
                 <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}" />
                 <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}" />

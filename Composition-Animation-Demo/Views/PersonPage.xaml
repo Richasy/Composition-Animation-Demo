@@ -2,6 +2,7 @@
     x:Class="CompositionAnimationDemo.Views.PersonPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:components="using:CompositionAnimationDemo.Controls.Components"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:layout="using:CompositionAnimationDemo.Controls.Layout"
     xmlns:local="using:CompositionAnimationDemo.Views"
@@ -14,13 +15,20 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <TextBlock
-            Margin="0,20"
-            HorizontalAlignment="Center"
-            VerticalAlignment="Center"
-            FontWeight="Bold"
-            Style="{StaticResource HeaderTextBlockStyle}"
-            Text="Person View" />
+        <StackPanel Margin="0,20" HorizontalAlignment="Center">
+            <TextBlock
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                FontWeight="Bold"
+                Style="{StaticResource HeaderTextBlockStyle}"
+                Text="Person View" />
+            <components:ButtonGroup
+                Margin="0,15,0,0"
+                HorizontalAlignment="Center"
+                ItemClick="ButtonGroup_ItemClick"
+                ItemsSource="{x:Bind vm.PersonViewButtonCollection}" />
+        </StackPanel>
+
         <layout:BasicPersonView Grid.Row="1" />
         <muxc:ProgressRing
             x:Name="LoadingRing"

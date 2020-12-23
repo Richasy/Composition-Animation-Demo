@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CompositionAnimationDemo.Models;
+using Newtonsoft.Json;
 using Richasy.Helper.UWP;
 using System;
 using System.Collections.Generic;
@@ -10,12 +11,13 @@ using UIFaces.NET.Models;
 using UIFaces.NET.Services;
 using Windows.ApplicationModel;
 
-namespace CompositionAnimationDemo
+namespace CompositionAnimationDemo.ViewModels
 {
     public class PersonViewModel
     {
         private Instance _instance;
         public ObservableCollection<Person> PersonCollection;
+        public ObservableCollection<ButtonGroupItemBase> PersonViewButtonCollection;
 
         private UIFacesService _service;
 
@@ -26,15 +28,24 @@ namespace CompositionAnimationDemo
         public PersonViewModel()
         {
             PersonCollection = new ObservableCollection<Person>();
+            PersonViewButtonCollection = new ObservableCollection<ButtonGroupItemBase>();
             Current = this;
             _instance = new Instance(nameof(Package.Current.DisplayName));
             _service = new UIFacesService("E5DDF433-C5D540F3-A3C92C7B-2DB79881");
+
+            InitButtonCollection();
         }
 
         public async Task InitPersonCollection()
         {
             if (!await GetDataFromLocal())
                 await GetDataFromWeb();
+        }
+
+        public void InitButtonCollection()
+        {
+            PersonViewButtonCollection.Add(new ButtonGroupItemBase("GridView"));
+            PersonViewButtonCollection.Add(new ButtonGroupItemBase("ItemsRepeater"));
         }
 
         private async Task GetDataFromWeb()

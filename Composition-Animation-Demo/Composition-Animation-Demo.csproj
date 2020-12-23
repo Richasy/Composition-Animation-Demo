@@ -119,6 +119,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\Components\ButtonGroup.xaml.cs">
+      <DependentUpon>ButtonGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\Components\PersonCard.cs" />
     <Compile Include="Controls\Layout\BasicPersonView.xaml.cs">
       <DependentUpon>BasicPersonView.xaml</DependentUpon>
@@ -126,7 +129,9 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Models\PersonViewModel.cs" />
+    <Compile Include="Models\ButtonGroupItemBase.cs" />
+    <Compile Include="Models\IButtonGroupItem.cs" />
+    <Compile Include="ViewModels\PersonViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\PersonPage.xaml.cs">
       <DependentUpon>PersonPage.xaml</DependentUpon>
@@ -203,6 +208,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\Components\ButtonGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\Layout\BasicPersonView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
