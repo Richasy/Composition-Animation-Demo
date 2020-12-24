@@ -36,6 +36,7 @@ namespace Composition_Animation_Demo
             this.Suspending += OnSuspending;
             RequestedTheme = ApplicationTheme.Dark;
             _ = new PersonViewModel();
+            _ = new ClockViewModel();
         }
 
         /// <summary>

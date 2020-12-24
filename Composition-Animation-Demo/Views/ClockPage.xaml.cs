@@ -1,5 +1,4 @@
-﻿using CompositionAnimationDemo;
-using CompositionAnimationDemo.Views;
+﻿using CompositionAnimationDemo.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,27 +12,26 @@ using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Composition_Animation_Demo
+namespace CompositionAnimationDemo.Views
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : Page
+    public sealed partial class ClockPage : Page
     {
-        public MainPage()
+        public ClockViewModel vm = ClockViewModel.Current;
+        public ClockPage()
         {
             this.InitializeComponent();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void ButtonGroup_ItemClick(object sender, Models.IButtonGroupItem e)
         {
-            MainFrame.Navigate(typeof(ClockPage),null,new DrillInNavigationTransitionInfo());
-            base.OnNavigatedTo(e);
+
         }
     }
 }
