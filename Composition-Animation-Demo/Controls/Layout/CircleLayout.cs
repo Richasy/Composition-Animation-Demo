@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,10 @@ using Windows.UI.Xaml.Media;
 
 namespace CompositionAnimationDemo.Controls.Layout
 {
-    public class CirclePanel : Panel
+    public class CircleLayout : VirtualizingLayout
     {
         private double _radius;
-        public CirclePanel()
+        public CircleLayout()
         {
 
         }
@@ -25,11 +26,11 @@ namespace CompositionAnimationDemo.Controls.Layout
         }
 
         public static readonly DependencyProperty RadiusProperty =
-            DependencyProperty.Register("Radius", typeof(double), typeof(CirclePanel), new PropertyMetadata(5d, new PropertyChangedCallback(OnRadiusChanged)));
+            DependencyProperty.Register("Radius", typeof(double), typeof(CircleLayout), new PropertyMetadata(5d, new PropertyChangedCallback(OnRadiusChanged)));
 
         private static void OnRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var instance = d as CirclePanel;
+            var instance = d as CircleLayout;
             if (e.NewValue is double rad && rad > 0)
             {
                 instance._radius = rad;
@@ -37,21 +38,35 @@ namespace CompositionAnimationDemo.Controls.Layout
             }
         }
 
-        protected override Size ArrangeOverride(Size finalSize)
+        protected override void InitializeForContextCore(VirtualizingLayoutContext context)
+        {
+            base.InitializeForContextCore(context);
+        }
+
+        protected override void UninitializeForContextCore(VirtualizingLayoutContext context)
+        {
+            base.UninitializeForContextCore(context);
+
+            // clear any state
+            context.LayoutState = null;
+        }
+
+        protected override Size ArrangeOverride(VirtualizingLayoutContext context, Size finalSize)
         {
             // Current angle, from zero.
             double angle = 0;
 
             // Calc each child element angle
-            double childAngle = 360d / Children.Count;
+            double childAngle = 360d / context.ItemCount;
 
             // Get center
-            double centerX = DesiredSize.Width / 2;
-            double centerY = DesiredSize.Height / 2;
+            double centerX = finalSize.Width / 2;
+            double centerY = finalSize.Height / 2;
 
             // Arrange
-            foreach (var child in Children)
+            for (int i = 0; i < context.ItemCount; i++)
             {
+                var child = context.GetOrCreateElementAt(i);
                 double radian = Math.PI * angle / 180;
                 // Child element position
                 double childX = Math.Cos(radian) * this._radius;
@@ -74,11 +89,12 @@ namespace CompositionAnimationDemo.Controls.Layout
             return finalSize;
         }
 
-        protected override Size MeasureOverride(Size availableSize)
+        protected override Size MeasureOverride(VirtualizingLayoutContext context, Size availableSize)
         {
             double maxChildWidth = 0;
-            foreach (var child in Children)
+            for (int i = 0; i < context.ItemCount; i++)
             {
+                var child = context.GetOrCreateElementAt(i);
                 child.Measure(availableSize);
                 maxChildWidth = Math.Max(maxChildWidth, child.DesiredSize.Width);
             }

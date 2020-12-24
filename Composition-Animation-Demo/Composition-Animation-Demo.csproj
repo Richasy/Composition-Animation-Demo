@@ -129,7 +129,7 @@
     <Compile Include="Controls\Layout\BasicPersonView.xaml.cs">
       <DependentUpon>BasicPersonView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Layout\CirclePanel.cs" />
+    <Compile Include="Controls\Layout\CircleLayout.cs" />
     <Compile Include="Converters\ClockScalarColorConverter.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>

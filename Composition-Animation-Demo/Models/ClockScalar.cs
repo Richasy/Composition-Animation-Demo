@@ -16,6 +16,7 @@ namespace CompositionAnimationDemo.Models
         }
 
         public double Moment { get; set; }
+        public int Index { get; set; }
 
         public ClockScalar(){}
 

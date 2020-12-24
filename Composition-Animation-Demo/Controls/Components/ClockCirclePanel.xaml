@@ -16,37 +16,28 @@
         <converters:ClockScalarColorConverter x:Key="ColorConverter" />
     </UserControl.Resources>
     <Grid>
-        <!--<controls:ItemsRepeater x:Name="ItemsRepeater"
-                                RenderTransformOrigin="0.5,0.5"
-                                ItemsSource="{x:Bind vm.ClockScalarCollection}"
-                                ElementPrepared="ItemsRepeater_ElementPrepared"
-                                ElementClearing="ItemsRepeater_ElementClearing"
-                                ElementIndexChanged="ItemsRepeater_ElementIndexChanged"
-                                >
+        <controls:ItemsRepeater
+            x:Name="ItemsRepeater"
+            ItemsSource="{x:Bind vm.ClockScalarCollection}"
+            RenderTransformOrigin="0.5,0.5">
             <controls:ItemsRepeater.Layout>
-
+                <layout:CircleLayout Radius="130" />
             </controls:ItemsRepeater.Layout>
-        </controls:ItemsRepeater>-->
-        <ItemsControl ItemsSource="{x:Bind vm.ClockScalarCollection}" RenderTransformOrigin="0.5,0.5">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <layout:CirclePanel Radius="130" />
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
+            <controls:ItemsRepeater.ItemTemplate>
                 <DataTemplate x:DataType="models:ClockScalar">
                     <Rectangle
                         Width="30"
                         Height="20"
                         Fill="{x:Bind IsCheck, Mode=OneWay, Converter={StaticResource ColorConverter}}"
                         RadiusX="4"
-                        RadiusY="4" />
+                        RadiusY="4"
+                        Tag="{x:Bind}" />
                 </DataTemplate>
-            </ItemsControl.ItemTemplate>
-            <ItemsControl.RenderTransform>
+            </controls:ItemsRepeater.ItemTemplate>
+            <controls:ItemsRepeater.RenderTransform>
                 <RotateTransform Angle="-90" />
-            </ItemsControl.RenderTransform>
-        </ItemsControl>
+            </controls:ItemsRepeater.RenderTransform>
+        </controls:ItemsRepeater>
         <Button
             x:Name="StartButton"
             HorizontalAlignment="Center"

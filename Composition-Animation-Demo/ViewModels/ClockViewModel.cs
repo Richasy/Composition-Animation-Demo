@@ -35,7 +35,9 @@ namespace CompositionAnimationDemo.ViewModels
             ClockScalarCollection.Clear();
             for (int i = 0; i < count; i++)
             {
-                ClockScalarCollection.Add(new ClockScalar(step.TotalSeconds * i));
+                var data = new ClockScalar(step.TotalSeconds * i);
+                data.Index = i;
+                ClockScalarCollection.Add(data);
             }
             ClockScalarCollection.First().IsCheck = true;
         }
@@ -46,12 +48,13 @@ namespace CompositionAnimationDemo.ViewModels
             ClockViewButtonCollection.Add(new ButtonGroupItemBase("Card"));
         }
 
-        public void CheckCurrentTime(TimeSpan current)
+        public ClockScalar CheckCurrentTime(TimeSpan current)
         {
             foreach (var item in ClockScalarCollection)
             {
                 item.IsCheck = item.Moment <= current.TotalSeconds;
             }
+            return ClockScalarCollection.Last(p => p.IsCheck);
         }
     }
 }

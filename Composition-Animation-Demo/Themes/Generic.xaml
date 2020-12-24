@@ -18,7 +18,6 @@
                     <Grid>
                         <Border
                             x:Name="ShadowHost"
-                            Grid.ColumnSpan="3"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                         <Grid
