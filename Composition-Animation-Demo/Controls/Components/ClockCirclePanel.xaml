@@ -13,7 +13,7 @@
     d:DesignWidth="400"
     mc:Ignorable="d">
     <UserControl.Resources>
-        <converters:ClockScalarColorConverter x:Key="ColorConverter" />
+        <converters:ClockScalarColorConverter x:Name="ColorConverter" />
     </UserControl.Resources>
     <Grid>
         <controls:ItemsRepeater

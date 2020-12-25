@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI;
 
 namespace CompositionAnimationDemo.ViewModels
 {
@@ -15,6 +16,9 @@ namespace CompositionAnimationDemo.ViewModels
         public ObservableCollection<ClockScalar> ClockScalarCollection;
 
         public static ClockViewModel Current;
+
+        public Color StartColor = Color.FromArgb(255, 63, 140, 254);
+        public Color EndColor = Color.FromArgb(255, 89, 198, 100);
 
         public TimeSpan TargetSpan { get; set; }
 
@@ -55,6 +59,15 @@ namespace CompositionAnimationDemo.ViewModels
                 item.IsCheck = item.Moment <= current.TotalSeconds;
             }
             return ClockScalarCollection.Last(p => p.IsCheck);
+        }
+
+        public Color GetMiddleColor(int index)
+        {
+            byte R = Convert.ToByte((StartColor.R + EndColor.R) * index / ClockScalarCollection.Count);
+            byte G = Convert.ToByte((StartColor.G + EndColor.G) * index / ClockScalarCollection.Count);
+            byte B = Convert.ToByte((StartColor.B + EndColor.B) * index / ClockScalarCollection.Count);
+            var newColor = Color.FromArgb(255, R, G, B);
+            return newColor;
         }
     }
 }

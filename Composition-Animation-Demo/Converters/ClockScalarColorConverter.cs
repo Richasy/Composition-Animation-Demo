@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CompositionAnimationDemo.Models;
+using CompositionAnimationDemo.ViewModels;
+using System;
 using Windows.UI;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Media;
